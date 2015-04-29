@@ -1,3 +1,18 @@
-// Place all the styles related to the Welcome controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+h1 {
+  color: red;
+  text-align: center;
+}
+
+p#index-title {
+  text-align: center;
+  font-size: 25px;
+  color: blue;
+}
+
+section {
+ background: #5998ff;
+ border-style: solid;
+ border-width: 15px;
+ margin: 25px 25px 25px 25px;
+ padding: 25px 25px 25px 25px;
+}
