@@ -2,15 +2,15 @@
  
  <div class="row">
    <div class="col-md-4">
-     <p>Guidelines for wikis</p>
+     <p><b>Guidelines for wikis</b></p>
      <ul>
-       <li>Make sure the it rhymes.</li>
-       <li>Don't use the letter "A".</li>
-       <li>The incessant use of hashtags will get you banned.</li>
+       <li>Content that violates any copyrights will be deleted. </li>
+       <li>Encyclopedic content must be verifiable. </li>
+       <li>Work submitted to Blocipedia can be edited, used, and redistributed—by anyone—subject to certain terms and conditions.</li>
      </ul>
    </div>
    <div class="col-md-8">
-     <%= form_for @wikis do |f| %>
+     <%= form_for @wiki do |f| %>
        <div class="form-group">
          <%= f.label :title %>
          <%= f.text_field :title, class: 'form-control', placeholder: "Enter wiki title" %>

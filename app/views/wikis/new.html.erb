@@ -1,12 +1,13 @@
  <h1>New Wiki</h1>
  
+ <div class='container'>
  <div class="row">
    <div class="col-md-4">
      <p>Guidelines for wikis</p>
      <ul>
-       <li>Make sure it rhymes.</li>
-       <li>Don't use the letter "A".</li>
-       <li>The incessant use of hashtags will get you banned.</li>
+       <li>Content that violates any copyrights will be deleted. </li>
+       <li>Encyclopedic content must be verifiable. </li>
+       <li>Work submitted to Wikipedia can be edited, used, and redistributed—by anyone—subject to certain terms and conditions.</li>
      </ul>
    </div>
    <div class="col-md-8">
@@ -17,7 +18,7 @@
        </div>
        <div class="form-group">
          <%= f.label :body %>
-         <%= f.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter wiki body" %>
+         <%= f.text_area :body, rows: 12, class: 'form-control', placeholder: "Enter wiki body" %>
        </div>
        <div class="form-group">
          <%= f.submit "Save", class: 'btn btn-success' %>
@@ -25,3 +26,4 @@
      <% end %>
    </div>
  </div>
+</div>

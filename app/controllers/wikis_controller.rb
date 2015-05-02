@@ -1,6 +1,6 @@
 class WikisController < ApplicationController
   def index
-    @wikis = Wiki.all
+    @wikis = Wiki.all.order(:title)
   end
 
   def show
@@ -23,6 +23,10 @@ class WikisController < ApplicationController
     end
   end
 
+  def edit
+    @wiki = Wiki.find(params[:id])
+  end
+
   def update
    @wiki = Wiki.find(params[:id])
    if @wiki.update_attributes(params.require(:wiki).permit(:title, :body))
@@ -36,7 +40,7 @@ class WikisController < ApplicationController
 
   def destroy
     @wiki = Wiki.find(params[:id])
-    name = @wiki.name
+    name = @wiki.title
 
     if @wiki.destroy
       flash[:notice] = "Wiki was deleted successfully."
@@ -46,4 +50,5 @@ class WikisController < ApplicationController
       render :show
     end
   end
+
 end
