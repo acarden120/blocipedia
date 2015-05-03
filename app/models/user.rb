@@ -19,6 +19,14 @@ class User < ActiveRecord::Base
   	role == 'admin'
   end
 
+  def can_edit?
+    self.standard? || self.admin? || self.premium? ? true : false
+  end
+
+  def can_delete?
+    self.admin? ? true : false
+  end
+
   def defaults
     self.role = 'standard'
   end
