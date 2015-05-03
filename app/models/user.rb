@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   has_many :wikis
+  after_initialize :defaults
 
   def standard?
   	role == 'standard'
@@ -16,5 +17,9 @@ class User < ActiveRecord::Base
 
   def admin?
   	role == 'admin'
+  end
+
+  def defaults
+    self.role = 'standard'
   end
 end

@@ -1,9 +1,9 @@
 class WikiPolicy < ApplicationPolicy
-  def destroy?
-    user.present? && (record.user == user || user.admin? || user.moderator?)
+  def update?
+    user.present?
   end
-
-  def edit?
-  	user.present?
+  
+  def destroy?
+    user.present? && (record.user == user || user.admin?)
   end
 end

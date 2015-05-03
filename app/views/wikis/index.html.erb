@@ -16,8 +16,12 @@
           </h4>
           <small>
             <%= wiki.body %><br>
-            <%= link_to "Edit ", edit_wiki_path(wiki) %> | 
-            <%= link_to " Delete", wiki, method: :delete, data: { confirm: 'Are you sure you want to delete this wiki?' } %> 
+            <% if policy(wiki).update? %>
+            <%= link_to "Edit ", edit_wiki_path(wiki) %>
+            <% end %>
+            <% if policy(wiki).destroy? %>
+            | <%= link_to " Delete", wiki, method: :delete, data: { confirm: 'Are you sure you want to delete this wiki?' } %>
+            <% end %>
             <br><br>
           </small>
         </div>

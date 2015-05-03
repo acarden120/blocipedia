@@ -9,6 +9,10 @@ class ApplicationController < ActionController::Base
     wikis_path
   end
 
+  rescue_from Pundit::NotAuthorizedError do |exception|
+    redirect_to root_url, alert: exception.message
+  end
+
   protected
 
   def configure_permitted_parameters
