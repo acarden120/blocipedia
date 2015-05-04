@@ -6,9 +6,6 @@
  	 <p>From blocipedia, the free encyclopedia.</p>
  	 <br>
      <p><%= @wiki.body %></p>
-     <% if @wiki.user.name %>
-     <p>[Created by <b><%= @wiki.user.name %></b> (<%= @wiki.user.email %>) at <%= @wiki.created_at %>]</p>
-     <% end %>
    </div>
  <div class="col-md-8">
  	<br>
