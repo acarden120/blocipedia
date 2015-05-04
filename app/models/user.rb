@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   has_many :wikis
-  after_initialize :defaults
+#  after_initialize :defaults
 
   def standard?
     role == 'standard'
