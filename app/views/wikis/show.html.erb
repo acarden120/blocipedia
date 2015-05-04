@@ -6,15 +6,18 @@
  	 <p>From blocipedia, the free encyclopedia.</p>
  	 <br>
      <p><%= @wiki.body %></p>
+     <% if @wiki.user.name %>
+     <p>[Created by <b><%= @wiki.user.name %></b> (<%= @wiki.user.email %>) at <%= @wiki.created_at %>]</p>
+     <% end %>
    </div>
  <div class="col-md-8">
  	<br>
     <%# if policy(@wiki).update? %>
-    <% if @user.can_edit? %>
+    <% if @wiki.user.can_edit? %>
     <%= link_to "Edit Wiki", edit_wiki_path(@wiki), class: 'btn btn-success' %>
     <% end %>
     <%# if policy(@wiki).destroy? %>
-    <% if @user.can_delete? %>
+    <% if @wiki.user.can_delete? %>
     <%= link_to "Delete Wiki", @wiki, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure you want to delete this wiki?' } %> 
     <% end %>
  </div>

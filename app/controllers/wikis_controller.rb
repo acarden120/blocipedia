@@ -1,15 +1,10 @@
 class WikisController < ApplicationController
-
-
   def index
     @wikis = Wiki.all.order(:title)
-    @user = current_user
-#    authorize @wiki
   end
 
   def show
     @wiki = Wiki.find(params[:id])
-    @user = current_user
     authorize @wiki
   end
 
@@ -20,7 +15,6 @@ class WikisController < ApplicationController
 
   def create
     @wiki = Wiki.new(params.require(:wiki).permit(:title, :body))
-    @user = current_user
     authorize @wiki
 
     if @wiki.save
@@ -34,13 +28,11 @@ class WikisController < ApplicationController
 
   def edit
     @wiki = Wiki.find(params[:id])
-    @user = current_user
     authorize @wiki
   end
 
   def update
     @wiki = Wiki.find(params[:id])
-    @user = current_user
     authorize @wiki
 
     if @wiki.update_attributes(params.require(:wiki).permit(:title, :body))
@@ -54,7 +46,6 @@ class WikisController < ApplicationController
 
   def destroy
     @wiki = Wiki.find(params[:id])
-    @user = current_user
     authorize @wiki
 
     if @wiki.destroy

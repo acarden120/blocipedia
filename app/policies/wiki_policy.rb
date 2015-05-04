@@ -1,4 +1,8 @@
 class WikiPolicy < ApplicationPolicy
+  def index?
+    user.present?
+  end
+
   def update?
     user.present?
   end
