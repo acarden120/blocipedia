@@ -8,19 +8,19 @@ class User < ActiveRecord::Base
   after_initialize :defaults
 
   def standard?
-  	role == 'standard'
+    role == 'standard'
   end
 
   def premium?
-  	role == 'premium'
+    role == 'premium'
   end
 
   def admin?
-  	role == 'admin'
+    role == 'admin'
   end
 
   def can_edit?
-    self.standard? || self.admin? || self.premium? ? true : false
+    (self.standard? || self.admin? || self.premium?) ? true : false
   end
 
   def can_delete?

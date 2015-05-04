@@ -9,20 +9,20 @@ class WikisController < ApplicationController
   end
 
   def new
-    @wiki = Wiki.new    
+    @wiki = Wiki.new
     authorize @wiki
   end
 
   def create
-    @wiki = Wiki.new(params.require(:wiki).permit(:title, :body))
+    @user = current_user
+    @wiki = Wiki.new(wiki_params)
+    @wiki.user = @user
     authorize @wiki
 
     if @wiki.save
-      flash[:notice] = 'Wiki was saved.'
       redirect_to @wiki
     else
       flash[:error] = 'There was an error saving the wiki. Please try again.'
-      render :new
     end
   end
 
@@ -35,7 +35,7 @@ class WikisController < ApplicationController
     @wiki = Wiki.find(params[:id])
     authorize @wiki
 
-    if @wiki.update_attributes(params.require(:wiki).permit(:title, :body))
+    if @wiki.update_attributes(wiki_params)
       flash[:notice] = 'Wiki was updated.'
       redirect_to @wiki
     else
@@ -55,5 +55,11 @@ class WikisController < ApplicationController
       flash[:error] = 'There was an error deleting the wiki.'
       render :show
     end
+  end
+
+  private
+
+  def wiki_params
+    params.require(:wiki).permit(:title, :body)
   end
 end
