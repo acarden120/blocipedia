@@ -1,0 +1,27 @@
+<%= form_tag charges_path do %>
+   <% if current_user.role == 'standard' %>
+ 	<div class='container'>
+ 	<div class="row">
+   		<div class="col-md-4">
+	   		<h2>Upgrade Account</h2>
+	   		<div style="width: 100%; height: 2px; background: #F87431; overflow: hidden;"></div>
+		    <p>From blocipedia, the free encyclopedia.</p>
+	   		<h3>User account details</h3>	   		
+	   		<p><b>Name:</b> <%= current_user.name %>
+	   		<p><b>Email:</b> <%= current_user.email %>
+	   		<p><b>Created:</b> <%= current_user.created_at %>
+	   		<p><b>Account type:</b> <%= current_user.role %><br><br>
+	   		<div class="checkbox">
+			  <label><input type="checkbox" value="">Upgrade to premium</label>
+			</div><br><br>
+	   		<script class='stripe-button' 
+	           src="https://checkout.stripe.com/checkout.js" 
+	           data-key="<%= @stripe_btn_data[:key] %>" 
+	           data-amount=<%= @stripe_btn_data[:amount] %> 
+	           data-description="<%= @stripe_btn_data[:description] %>" >
+	    	</script>
+ 	<% end %>
+ 	<% end %>
+	</div>
+</div>
+</div>

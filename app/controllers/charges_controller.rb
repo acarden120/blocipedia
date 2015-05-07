@@ -1,4 +1,4 @@
-class WikisController < ApplicationController
+class ChargesController < ApplicationController
  def create
  
    # Creates a Stripe Customer object, for associating
@@ -11,7 +11,7 @@ class WikisController < ApplicationController
    # Where the real magic happens
    charge = Stripe::Charge.create(
      customer: customer.id, # Note -- this is NOT the user_id in your app
-     amount: Amount.default,
+     amount: 1000,
      description: "BigMoney Membership - #{current_user.email}",
      currency: 'usd'
    )
@@ -25,5 +25,13 @@ class WikisController < ApplicationController
  rescue Stripe::CardError => e
    flash[:error] = e.message
    redirect_to new_charge_path
+ end
+
+ def new
+   @stripe_btn_data = {
+     key: "#{ Rails.configuration.stripe[:publishable_key] }",
+     description: "BigMoney Membership - #{current_user.name}",
+     amount: 1000
+   }
  end
 end

@@ -6,7 +6,8 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def after_sign_in_path_for(_resource)
-    wikis_path
+#    wikis_path
+    new_charge_path
   end
 
   rescue_from Pundit::NotAuthorizedError do |exception|
