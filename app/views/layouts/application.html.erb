@@ -11,6 +11,11 @@
       <ul class='nav nav-tabs'>
         <li><%= link_to 'Blocipedia', root_path %></li>
         <li><%= link_to 'Public Wikis', wikis_path %></li>
+        <% if current_user %> 
+          <% if current_user.role == 'premium' %>
+          <li><%= link_to 'Private Wikis', wikis_path %></li>
+          <% end %>
+        <% end %>
         <div class="pull-right user-info"> 
            <% if current_user %>
              Hello <%= current_user.name %> <%= link_to ' Sign out', destroy_user_session_path, method: :delete %>

@@ -16,8 +16,18 @@ class ChargesController < ApplicationController
      currency: 'usd'
    )
  
-   flash[:success] = "Thanks for all the money, #{current_user.email}! Feel free to pay me again."
-   redirect_to user_path(current_user) # or wherever
+   if current_user.update(role: 'premium')
+     flash[:success] = "Thanks for all the money, #{current_user.email}! Feel free to pay me again."
+     redirect_to edit_user_registration_path
+   else
+     flash[:success] = "There was an error upgrading your account. Please contact support!"
+     redirect_to edit_user_registration_path
+   end
+
+#   flash[:success] = "Thanks for all the money, #{current_user.email}! Feel free to pay me again."
+#   redirect_to user_path(current_user) # or wherever
+#   redirect_to wiki_path
+#    redirect_to new_charge_path
  
  # Stripe will send back CardErrors, with friendly messages
  # when something goes wrong.

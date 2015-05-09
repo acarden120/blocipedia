@@ -27,6 +27,10 @@ class User < ActiveRecord::Base
     self.admin? ? true : false
   end
 
+  def create_private?
+    self.premium? ? true : false
+  end
+
   def defaults
     self.role = 'standard'
   end
