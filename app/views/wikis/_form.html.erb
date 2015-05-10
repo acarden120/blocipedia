@@ -9,7 +9,6 @@
  </div>
  <% if current_user.create_private? %>
 	 <div class="form-group">
-	 	<%#= f.check_box(:wiki_private), checked_value = true, unchecked_value = false %>
 	 	<%= f.check_box :wiki_private, {}, true, false  %>
 	 	<%= f.label :wiki_private, "Make this a private wiki" %>
 	 </div>

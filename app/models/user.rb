@@ -34,4 +34,9 @@ class User < ActiveRecord::Base
   def defaults
     self.role = 'standard'
   end
+
+  def update_private_wikis
+    self.wikis.all.update_all(wiki_private: false)
+  end
+
 end
