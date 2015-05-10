@@ -20,8 +20,7 @@
 		           data-description="<%= @stripe_btn_data[:description] %>" >
 		    	</script>
 		 	<% elsif current_user.premium? %>
-		   		<p>Your already have a premium account. Use the following link to downgrade to a standard level account:</p>
-		   		<p><b>Note:</b>You will no longer be able to create private wikis. All of your existing private wikis will be made public. Please ensure that any wiki containing sensitive information is deleted or edited before you downgrade your account.</p>
+		   		<p>You already have a premium account. Use the following link to downgrade to a standard level account:</p>
 		   	    <%= link_to "Edit Account details", edit_user_registration_path %>
 		 	<% end %>
  	<% end %>

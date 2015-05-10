@@ -5,7 +5,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   has_many :wikis
-#  after_initialize :defaults
 
   def standard?
     role == 'standard'
@@ -31,12 +30,7 @@ class User < ActiveRecord::Base
     self.premium? ? true : false
   end
 
-  def defaults
-    self.role = 'standard'
-  end
-
   def update_private_wikis
-    self.wikis.all.update_all(wiki_private: false)
+    wikis.all.update_all(wiki_private: false)
   end
-
 end

@@ -7,7 +7,6 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(_resource)
     wikis_path
-#    new_charge_path
   end
 
   rescue_from Pundit::NotAuthorizedError do |exception|
