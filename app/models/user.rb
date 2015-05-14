@@ -18,19 +18,7 @@ class User < ActiveRecord::Base
     role == 'admin'
   end
 
-  def can_edit?
-    (self.standard? || self.admin? || self.premium?) ? true : false
-  end
-
-  def can_delete?
-    self.admin? ? true : false
-  end
-
-  def create_private?
-    self.premium? ? true : false
-  end
-
   def update_private_wikis
-    wikis.all.update_all(wiki_private: false)
+    wikis.all.update_all(public: true)
   end
 end
