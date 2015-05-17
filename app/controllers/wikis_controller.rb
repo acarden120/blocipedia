@@ -1,11 +1,10 @@
 class WikisController < ApplicationController
   include Pundit
   
-  before_filter :authenticate_user!, except: [:index, :show]
+#  before_action :authenticate_user!
 
   def index
-    @wikis = Wiki.all.order(:title)
-    authorize @wikis
+    @wikis = Wiki.all.order('created_at desc')
   end
 
   def show
@@ -24,7 +23,7 @@ class WikisController < ApplicationController
     @wiki.user = @user
 
     authorize @wiki
-
+    
     if @wiki.save
       redirect_to @wiki
     else
@@ -66,6 +65,6 @@ class WikisController < ApplicationController
   private
 
   def wiki_params
-    params.require(:wiki).permit(:title, :body, :public)
+    params.require(:wiki).permit(:title, :body, :wiki_private)
   end
 end

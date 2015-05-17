@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  after_update update_private_wikis
+  before_action :authenticate_user!
 
   def update
   end
@@ -13,9 +13,4 @@ class UsersController < ApplicationController
     redirect_to edit_user_registration_path
   end
 
-  private
-
-  def update_private_wikis
-    current_user.wikis.all.update_all(public: true)
-  end
 end

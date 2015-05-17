@@ -1,14 +1,21 @@
 class UserPolicy < ApplicationPolicy
-  def can_edit?
+  def edit?
     (@user.standard? || @user.admin? || @user.premium?) ? true : false
   end
 
-  def can_delete?
+  def delete?
     @user.admin? ? true : false
   end
 
-  def create_private?
-    @user.premium? ? true : false
+  def create?
+    @user.present?
   end
 
+  def index?
+  	true
+  end
+
+  def new?
+    @user.present?
+  end
 end

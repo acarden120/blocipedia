@@ -10,7 +10,7 @@ require 'faker'
   # Create an admin user
  admin = User.new(
    name:     'Admin User',
-   email:    'admin@example.com',
+   email:    'admin2@example.com',
    password: 'helloworld',
    role:     'admin'
  )
@@ -27,6 +27,15 @@ require 'faker'
  admin.skip_confirmation!
  admin.save!
 
+  # Create an standard test user
+ admin = User.new(
+   name:     'Test2 User2',
+   email:    'test2@example.com',
+   password: 'abc654321',
+   role:     'premium'
+ )
+ admin.skip_confirmation!
+ admin.save!
 
 10.times do 
 	user = User.new(
