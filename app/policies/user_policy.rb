@@ -11,10 +11,6 @@ class UserPolicy < ApplicationPolicy
     @user.present?
   end
 
-  def index?
-    true
-  end
-
   def new?
     @user.present?
   end
