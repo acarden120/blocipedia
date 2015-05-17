@@ -18,7 +18,7 @@
             <%= link_to wiki.title, wiki %>
           </h4>
           <small>
-            <%= wiki.body %><br>
+            <%= markdown_wiki wiki.body %><br>
             <% if current_user %>
               <% if policy(wiki).edit? %>
               <%= link_to "Edit ", edit_wiki_path(wiki) %>

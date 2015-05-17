@@ -1,11 +1,11 @@
 <div class='container'>
  <div class="row">
    <div class="col-md-8">
-     <h3><%= @wiki.title %></h3>
+     <h3><%= markdown_wiki @wiki.title %></h3>
      <div style="width: 100%; height: 2px; background: #F87431; overflow: hidden;"></div>
      <p>From blocipedia, the free encyclopedia.</p>
      <br>
-     <p><%= @wiki.body %></p>
+     <p><%= markdown_wiki @wiki.body %></p>
      <p>[Created by <b><%= @wiki.user.name %></b> (<%= @wiki.user.email %>) at <%= @wiki.created_at %>]</p>
    </div>
  <div class="col-md-8">
