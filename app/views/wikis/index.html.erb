@@ -13,11 +13,12 @@
     <% @wikis.each do |wiki| %>
       <div class="media">
         <div class="media-body">
+        <% next if wiki.wiki_private == true unless wiki.user == current_user && current_user.premium? %>
           <h4 class="media-heading">
             <%= link_to wiki.title, wiki %>
           </h4>
           <small>
-            <%= wiki.body %><br>
+            <%= markdown_wiki wiki.body %><br>
             <% if current_user %>
               <% if policy(wiki).edit? %>
               <%= link_to "Edit ", edit_wiki_path(wiki) %>
