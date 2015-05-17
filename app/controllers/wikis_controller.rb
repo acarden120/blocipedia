@@ -1,8 +1,6 @@
 class WikisController < ApplicationController
   include Pundit
 
-  before_action :authenticate_user!
-
   def index
     @wikis = Wiki.all.order('created_at desc')
   end
