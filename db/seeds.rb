@@ -27,7 +27,7 @@ require 'faker'
  admin.skip_confirmation!
  admin.save!
 
-  # Create an standard test user
+ # Create an standard test user
  admin = User.new(
    name:     'Test2 User2',
    email:    'test2@example.com',
