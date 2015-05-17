@@ -1,4 +1,5 @@
 class ChargesController < ApplicationController
+  # rubocop:disable MethodLength, Metrics/AbcSize
   def create
     customer = Stripe::Customer.create(
       email: current_user.email,
@@ -24,6 +25,7 @@ class ChargesController < ApplicationController
       flash[:error] = e.message
       redirect_to new_charge_path
   end
+  # rubocop:enable MethodLength, Metrics/AbcSize
 
   def new
     @stripe_btn_data = {

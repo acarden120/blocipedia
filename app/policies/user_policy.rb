@@ -12,7 +12,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def index?
-  	true
+    true
   end
 
   def new?

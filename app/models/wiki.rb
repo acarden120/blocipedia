@@ -6,7 +6,7 @@ class Wiki < ActiveRecord::Base
   validate :premium_user_creates_private_wiki, on: :create
 
   def premium_user_creates_private_wiki
-  	return unless wiki_private
-  	errors.add(:base, 'There is a problem with the wk vald') unless user.premium?
+    return unless wiki_private
+    errors.add(:base, 'nnn') unless user.premium?
   end
 end

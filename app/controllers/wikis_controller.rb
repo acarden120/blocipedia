@@ -1,7 +1,7 @@
 class WikisController < ApplicationController
   include Pundit
-  
-#  before_action :authenticate_user!
+
+  before_action :authenticate_user!
 
   def index
     @wikis = Wiki.all.order('created_at desc')
@@ -23,7 +23,7 @@ class WikisController < ApplicationController
     @wiki.user = @user
 
     authorize @wiki
-    
+
     if @wiki.save
       redirect_to @wiki
     else
