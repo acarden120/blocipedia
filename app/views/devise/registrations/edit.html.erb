@@ -33,6 +33,12 @@
   </div>
 <% end %>
 
+<% if current_user.premium? %>
+<h3>Downgrade my account</h3>
+<p><b>Note:</b>You will no longer be able to create private wikis. All of your existing private wikis will be made public. Please ensure that any wiki containing sensitive information is deleted or edited before you downgrade your account.</p>
+<p><%= button_to "Downgrade my account", user_downgrade_path(current_user), data: { confirm: "Are you sure?" }, method: :downgrade %></p>
+<% end %>
+
 <h3>Cancel my account</h3>
 
 <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>

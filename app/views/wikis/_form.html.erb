@@ -7,6 +7,13 @@
    <%= f.label :body %>
    <%= f.text_area :body, rows: 12, class: 'form-control', placeholder: "Enter wiki body" %>
  </div>
+ <% if policy(@wiki).create_private? %>
+	 <div class="form-group">
+	 	<%= f.check_box :wiki_private, {}, true, false  %>
+	 	<%= f.label :wiki_private, "Make this a private wiki" %>
+	 </div>
+ <% end %>
+ <br>
  <div class="form-group">
    <%= f.submit "Save", class: 'btn btn-success' %>
  </div>

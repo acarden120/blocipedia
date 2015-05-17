@@ -1,6 +1,8 @@
 class WikisController < ApplicationController
+  include Pundit
+
   def index
-    @wikis = Wiki.all.order(:title)
+    @wikis = Wiki.all.order('created_at desc')
   end
 
   def show
@@ -17,6 +19,7 @@ class WikisController < ApplicationController
     @user = current_user
     @wiki = Wiki.new(wiki_params)
     @wiki.user = @user
+
     authorize @wiki
 
     if @wiki.save
@@ -60,6 +63,6 @@ class WikisController < ApplicationController
   private
 
   def wiki_params
-    params.require(:wiki).permit(:title, :body)
+    params.require(:wiki).permit(:title, :body, :wiki_private)
   end
 end

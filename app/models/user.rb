@@ -5,8 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   has_many :wikis
-
-  after_initialize :defaults
+  after_update :update_private_wikis
 
   def standard?
     role == 'standard'
@@ -20,15 +19,10 @@ class User < ActiveRecord::Base
     role == 'admin'
   end
 
-  def can_edit?
-    (self.standard? || self.admin? || self.premium?) ? true : false
-  end
+  protected
 
-  def can_delete?
-    self.admin? ? true : false
-  end
-
-  def defaults
-    self.role = 'standard'
+  def update_private_wikis
+    return unless role_was == 'premium' && role == 'standard'
+    wikis.all.update_all(wiki_private: false)
   end
 end

@@ -5,8 +5,10 @@
     <h2>Public Wikis</h2>
     <div style="width: 100%; height: 2px; background: #F87431; overflow: hidden;"></div>
     <p>From blocipedia, the free encyclopedia.</p>
-    <div>
-      </br><%= link_to "New Wiki", new_wiki_path, class: 'btn btn-success' %>
+    <div>        
+    <% if current_user %>
+    </br><%= link_to "New Wiki", new_wiki_path, class: 'btn btn-success' %>
+    <% end %>
     </div><br>
     <% @wikis.each do |wiki| %>
       <div class="media">
@@ -17,10 +19,10 @@
           <small>
             <%= wiki.body %><br>
             <% if current_user %>
-              <% if wiki.user.can_edit? %>
+              <% if policy(wiki).edit? %>
               <%= link_to "Edit ", edit_wiki_path(wiki) %>
               <% end %>
-              <% if wiki.user.can_delete? %>
+              <% if policy(wiki).destroy? %>
               | <%= link_to " Delete", wiki, method: :delete, data: { confirm: 'Are you sure you want to delete this wiki?' } %>
               <% end %>
             <% end %>

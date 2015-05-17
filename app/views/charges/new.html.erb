@@ -1,0 +1,29 @@
+<%= form_tag charges_path do %>
+ 	<div class='container'>
+ 	<div class="row">
+   		<div class="col-md-4">
+	   		<h2>Update Account</h2>
+	   		<div style="width: 100%; height: 2px; background: #F87431; overflow: hidden;"></div>
+		    <p>From blocipedia, the free encyclopedia.</p>
+	   		<h3>Account details</h3>	   		
+	   		<p><b>Name:</b> <%= current_user.name %>
+	   		<p><b>Email:</b> <%= current_user.email %>
+	   		<p><b>Created:</b> <%= current_user.created_at %>
+	   		<p><b>Account type:</b> <%= current_user.role %><br>
+            <% if current_user.standard? || current_user.admin? %>
+                <hr><h3>Upgrade to premium</h3>
+                <p>Premium users have the ability to create and view private wikis.</p>
+		   		<script class='stripe-button' 
+		           src="https://checkout.stripe.com/checkout.js" 
+		           data-key="<%= @stripe_btn_data[:key] %>" 
+		           data-amount=<%= @stripe_btn_data[:amount] %> 
+		           data-description="<%= @stripe_btn_data[:description] %>" >
+		    	</script>
+		 	<% elsif current_user.premium? %>
+		   		<p>You already have a premium account. Use the following link to downgrade to a standard level account:</p>
+		   	    <%= link_to "Edit Account details", edit_user_registration_path %>
+		 	<% end %>
+ 	<% end %>
+	</div>
+</div>
+</div>
