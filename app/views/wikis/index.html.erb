@@ -13,7 +13,7 @@
     <% @wikis.each do |wiki| %>
       <div class="media">
         <div class="media-body">
-        <% next if wiki.wiki_private == true unless wiki.user == current_user && current_user.premium? %>
+        <% next if wiki.wiki_private == true unless wiki.user == current_user && current_user.premium? || current_user.admin? %>
           <h4 class="media-heading">
             <%= link_to wiki.title, wiki %>
           </h4>

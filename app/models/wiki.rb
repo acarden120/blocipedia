@@ -7,6 +7,6 @@ class Wiki < ActiveRecord::Base
 
   def premium_user_creates_private_wiki
     return unless wiki_private
-    errors.add(:base, 'nnn') unless user.premium?
+    errors.add(:base, 'nnn') unless user.premium? || user.admin?
   end
 end
