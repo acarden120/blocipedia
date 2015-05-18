@@ -2,7 +2,8 @@ class WikisController < ApplicationController
   include Pundit
 
   def index
-    @wikis = Wiki.all.order('created_at desc')
+#    @wikis = Wiki.all.order('created_at desc')
+    @wikis = policy_scope(Wiki)
   end
 
   def show
