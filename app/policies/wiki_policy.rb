@@ -12,7 +12,7 @@ class WikiPolicy < ApplicationPolicy
   end
 
   def create_private?
-    user.present? && user.premium?
+    user.present? && (user.premium? || user.admin?)
   end
 
   def show?
