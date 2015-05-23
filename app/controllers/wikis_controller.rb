@@ -2,12 +2,16 @@ class WikisController < ApplicationController
   include Pundit
 
   def index
-#    @wikis = Wiki.all.order('created_at desc')
-    @wikis = policy_scope(Wiki)
+    if current_user.nil?
+      @wikis = Wiki.all.where(wiki_private: false).order('created_at desc')
+    else
+      @wikis = policy_scope(Wiki)
+    end
   end
 
   def show
     @wiki = Wiki.find(params[:id])
+    @users = User.all
     authorize @wiki
   end
 

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
 
   resources :wikis
+  resources :collaborations, only: [:create, :destroy]
 
   resources :charges, only: [:new, :create]
  
