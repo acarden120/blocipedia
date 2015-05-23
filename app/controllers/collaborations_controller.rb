@@ -4,11 +4,11 @@ class CollaborationsController < ApplicationController
   def create
     @users = params[:user_ids]
     @wiki = Wiki.find(params[:wiki_id])
-    @users.each do |user| 
+    @users.each do |user|
       @wiki_collaboration = @wiki.collaborations.new(user_id: user)
       @wiki_collaboration.save
     end
-    flash[:success] = "Collaborator added."
+    flash[:success] = 'Collaborator added.'
     redirect_to @wiki
   end
 
@@ -22,5 +22,4 @@ class CollaborationsController < ApplicationController
       format.js
     end
   end
-
 end

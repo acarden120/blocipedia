@@ -21,11 +21,6 @@ class User < ActiveRecord::Base
     role == 'admin'
   end
 
-  
-#  def collaborations
-#    Collaboration.where(user_id: id)
-#  end
-
   protected
 
   def update_private_wikis

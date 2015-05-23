@@ -1,6 +1,6 @@
 class Wiki < ActiveRecord::Base
   belongs_to :user
-  
+
   has_many :collaborations
   has_many :users, through: :collaborations
 
@@ -16,8 +16,4 @@ class Wiki < ActiveRecord::Base
     return unless wiki_private
     errors.add(:base, 'nnn') unless user.premium? || user.admin?
   end
-
-#  def collaborations
-#  	Collaboration.where(wiki_id: id)
-#  end
 end
