@@ -4,7 +4,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
-  has_many :wikis
+  has_many :collaborations
+  has_many :wikis, through: :collaborations
+
   after_update :update_private_wikis
 
   def standard?

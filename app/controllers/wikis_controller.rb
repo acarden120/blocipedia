@@ -2,11 +2,12 @@ class WikisController < ApplicationController
   include Pundit
 
   def index
-    @wikis = Wiki.all.order('created_at desc')
+    @wikis = policy_scope(Wiki)
   end
 
   def show
     @wiki = Wiki.find(params[:id])
+    @users = User.all
     authorize @wiki
   end
 
@@ -26,6 +27,7 @@ class WikisController < ApplicationController
       redirect_to @wiki
     else
       flash[:error] = 'There was an error saving the wiki. Please try again.'
+      render :new
     end
   end
 

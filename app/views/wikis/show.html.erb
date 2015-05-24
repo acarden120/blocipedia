@@ -18,4 +18,34 @@
     <% end %>
  </div>
  </div>
+  <br><br>
+  <% if policy(@wiki).add_collaborator? %>
+  <% if @wiki.users.count > 0 %>
+      <b>Current Collaborators</b><br>
+      <% @wiki.collaborations.each do |collaboration| %>
+      <%= content_tag :div, class: 'media', id: "collaborations-#{collaboration.id}" do %>
+        <%= collaboration.user.name %> |  
+        <%= link_to " Remove ", collaboration, method: :delete, remote: true %><br>
+        <% end %>
+      <% end %>
+    <% end %>
+    <br><br>
+    <% if @wiki.collaborations.count < User.count - 1 %>
+    <h4>Add new collaborator</h4>  
+    <%= form_for @wiki, url: collaborations_path, method: :post do %>
+    <%= hidden_field_tag(:wiki_id, @wiki.id) %>
+    <% @users.each do |user| %>
+      <% next if current_user == user || @wiki.users.include?(user) %>
+      <%= check_box_tag "user_ids[]", user.id %>
+      <%= label_tag(user.id, user.name) %><br>
+    <% end %>
+    <br>
+    <%= submit_tag 'Add Collaborators', class: 'btn btn-primary' %><br>
+    </div>
+  <% end %>
+  <% end %> 
+  </div>
+
+  </div>
+  <% end %>
 </div>

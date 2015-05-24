@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-sm-6">
+    <%= form_for wiki, url: collaborations_path, method: :post do %>
+    <%= hidden_field_tag :wiki_id, wiki.id %>
+  <% @users.each do |user| %>
+    <% next if current_user == user %>
+    <div class="checkbox">
+    <%= check_box_tag "user_ids[]", user.id, wiki.users.include?(user) %>
+    <%= user.username %>
+      <% wiki.collaborations.each do |collaboration| %>
+        <% if user.wiki_collaborations.include?(collaboration) %>
+          <%= link_to "| Remove", collaboration, method: :delete %>
+        <% end %>
+      <% end %>
+  </div>
+  <% end %>
+
+  <%= submit_tag 'Add Collaborators', class: 'btn btn-primary' %>
+
+  </div>
+
+<% end %>
+</div>

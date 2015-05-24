@@ -11,14 +11,12 @@
       <ul class='nav nav-tabs'>
         <li><%= link_to 'Blocipedia', root_path %></li>
         <li><%= link_to 'Public Wikis', wikis_path %></li>
-<<<<<<< HEAD
-=======
         <% if current_user %> 
           <% if current_user.premium? %>
           <li><%= link_to 'Private Wikis', wikis_path %></li>
           <% end %>
         <% end %>
->>>>>>> Upgrade-Account
+        <li><%= link_to 'Wikis', wikis_path %></li>
         <div class="pull-right user-info"> 
            <% if current_user %>
              Hello <%= current_user.name %> <%= link_to ' Sign out', destroy_user_session_path, method: :delete %>
@@ -29,6 +27,27 @@
            <% end %>
          </div>
       </ul>
+    <% if flash[:notice] %>
+      <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <%= flash[:notice] %>
+      </div>
+    <% elsif flash[:error] %>
+      <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <%= flash[:error] %>
+      </div>
+    <% elsif flash[:alert] %>
+      <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <%= flash[:alert] %>
+      </div>
+    <% elsif flash[:success] %>
+      <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <%= flash[:success] %>
+      </div>    
+      <% end %>
     </div>
 
 <%= yield %>
