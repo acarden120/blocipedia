@@ -9,3 +9,5 @@ Documentation:
 Metrics/LineLength:
   Max: 120
   AllowURI: true
+Metrics/CyclomaticComplexity:
+  Enabled: false
