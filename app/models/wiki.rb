@@ -5,10 +5,14 @@ class Wiki < ActiveRecord::Base
   validates :body, length: { minimum: 20 }, presence: true
   validate :premium_user_creates_private_wiki, on: :create
 
+  def public?
+    wiki_private == false
+  end
+
   protected
 
   def premium_user_creates_private_wiki
     return unless wiki_private
-    errors.add(:base, 'Only premium user can create private wiki') unless user.premium?
+    errors.add(:base, 'Only premium user can create private wiki') unless user.premium? || user.admin?
   end
 end
